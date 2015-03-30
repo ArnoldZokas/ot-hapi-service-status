@@ -1,6 +1,8 @@
 # ot-hapi-service-status
 > Service Status plugin for Hapi
 
+[![Build Status](https://semaphoreci.com/api/v1/projects/cc93e0df-4124-4a48-914a-4a83e42c4aeb/386191/badge.svg)](https://semaphoreci.com/ArnoldZokas/ot-hapi-service-status)
+
 TODO - badges
 
 ## Usage

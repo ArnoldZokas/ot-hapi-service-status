@@ -24,7 +24,7 @@ server.register([
         monitors: [
             function(req, reply, done) {
                 done(null, {
-                    status: 'healthy',
+                    status: 'healthy', // status of 'healty' indicates monitor is healthy, any other value indicates monitor failure and will cause the top-level status to change to 'faulting'
                     name: 'monitor 1', // optional name, useful for differentiating between monitors
                     myField1: true,    // arbitraty fields, usefull for surfacing
                     myField2: false    // additional diagnostic information

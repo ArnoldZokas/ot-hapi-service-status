@@ -23,12 +23,19 @@ server.register([
         },
         monitors: [
             function(req, reply, done) {
-                // check mongodb is reachable
-                TODO
+                done(null, {
+                    status: 'healthy',
+                    name: 'monitor 1', // optional name, useful for differentiating between monitors
+                    myField1: true,    // arbitraty fields, usefull for surfacing
+                    myField2: false    // additional diagnostic information
+                });
             },
             function(req, reply, done) {
-                // check redis is reachable
-                TODO
+                done(null, {
+                    status: 'cannot connect to internal service',
+                    name: 'monitor 2',
+                    err: {}
+                });
             }
         ]
     }
@@ -42,8 +49,11 @@ server.register([
 ```
 
 ## Configuration
-- **monitors** -
-- **metadata** - (optional)
+- **monitors** - a list of monitoring functions, with the following signature `function(req, reply, done)`
+    - **req** - Hapi request object
+    - **reply** - Hapi reply object
+    - **done** - callback, with the following signature `function(err, data)`
+- **metadata** - (optional) a set of additional fields to inject into each service-status response
 
 ## Release History
 - **v0.1.0** (2015-xx-xx)

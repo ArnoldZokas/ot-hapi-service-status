@@ -29,6 +29,7 @@
     "joi": "6.0.8"
   },
   "devDependencies": {
+    "deep-diff": "0.3.0",
     "expect.js": "0.3.1",
     "grunt": "0.4.5",
     "grunt-cli": "0.1.13",

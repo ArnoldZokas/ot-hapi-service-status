@@ -39,7 +39,7 @@ server.register([
             }
         ]
     }
-], function (err) {
+], function(err) {
     if (err) {
         console.error('Failed to load plugin:', err);
     }

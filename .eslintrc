@@ -3,19 +3,21 @@
     "brace-style": [1, "stroustrup", { "allowSingleLine": true }],
     "comma-style": [1, "last"],
     "consistent-this": [1, "self"],
+    "eol-last": 1,
     "indent": [1, 4],
     "no-continue": 1,
     "no-lonely-if": 1,
     "no-multi-spaces": 0,
     "no-multiple-empty-lines": 1,
     "no-nested-ternary": 1,
+    "no-underscore-dangle": 0,
     "quotes": [2, "single"],
     "quote-props": [1, "as-needed"],
-    "sort-vars": [1, true, { ignoreCase: true }],
+    "sort-vars": [1, true, { "ignoreCase": true }],
     "space-after-function-name": [1, "never"],
-    "space-after-keywords": [1, "always"],
+    "space-after-keywords": [1, "never"],
     "space-before-blocks": [1, "always"],
-    "space-before-function-paren": [1, "always"],
+    "space-before-function-paren": [1, "never"],
     "space-in-brackets": [1, "always", { "singleValue": false, "propertyName": false }],
     "space-in-parens": [1, "never"],
     "space-unary-ops": [1, { "words": true, "nonwords": false }],
@@ -23,7 +25,7 @@
     "wrap-regex": [1]
   },
   "env": {
-      "mocha": true,
-      "node": true
+    "mocha": true,
+    "node": true
   }
 }

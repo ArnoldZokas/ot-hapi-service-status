@@ -4,23 +4,23 @@ var diff   = require('deep-diff'),
     expect = require('expect.js'),
     plugin = require('../index.js');
 
-describe('service-status route', function () {
-    describe('given 2 healthy monitors', function () {
+describe('service-status route', function() {
+    describe('given 2 healthy monitors', function() {
         var contentType,
             payload,
             statusCode;
 
-        before(function (done) {
+        before(function(done) {
             var server = {
-                route: function (routes) {
+                route: function(routes) {
                     var req = {};
-                    var reply = function (value) {
+                    var reply = function(value) {
                         payload = value;
                         return {
-                            type: function (type) {
+                            type: function(type) {
                                 contentType = type;
                                 return {
-                                    code: function (code) { statusCode = code; }
+                                    code: function(code) { statusCode = code; }
                                 };
                             }
                         };
@@ -35,12 +35,12 @@ describe('service-status route', function () {
                     test: true
                 },
                 monitors: [
-                    function (req, reply, next) {
+                    function(req, reply, next) {
                         next(null, {
                             status: 'healthy'
                         });
                     },
-                    function (req, reply, next) {
+                    function(req, reply, next) {
                         next(null, {
                             status: 'healthy'
                         });
@@ -49,15 +49,15 @@ describe('service-status route', function () {
             }, done);
         });
 
-        it('should return status code 200', function () {
+        it('should return status code 200', function() {
             expect(statusCode).to.equal(200);
         });
 
-        it('should return content-type application/json', function () {
+        it('should return content-type application/json', function() {
             expect(contentType).to.equal('application/json');
         });
 
-        it('should return payload with overall status ok', function () {
+        it('should return payload with overall status ok', function() {
             expect(diff(payload, {
                 status: 'ok',
                 test: true,
@@ -69,22 +69,22 @@ describe('service-status route', function () {
         });
     });
 
-    describe('given 1 healthy, 1 failing monitor', function () {
+    describe('given 1 healthy, 1 failing monitor', function() {
         var contentType,
             payload,
             statusCode;
 
-        before(function (done) {
+        before(function(done) {
             var server = {
-                route: function (routes) {
+                route: function(routes) {
                     var req = {};
-                    var reply = function (value) {
+                    var reply = function(value) {
                         payload = value;
                         return {
-                            type: function (type) {
+                            type: function(type) {
                                 contentType = type;
                                 return {
-                                    code: function (code) { statusCode = code; }
+                                    code: function(code) { statusCode = code; }
                                 };
                             }
                         };
@@ -99,12 +99,12 @@ describe('service-status route', function () {
                     test: true
                 },
                 monitors: [
-                    function (req, reply, next) {
+                    function(req, reply, next) {
                         next(null, {
                             status: 'healthy'
                         });
                     },
-                    function (req, reply, next) {
+                    function(req, reply, next) {
                         next(null, {
                             status: 'failing'
                         });
@@ -113,15 +113,15 @@ describe('service-status route', function () {
             }, done);
         });
 
-        it('should return status code 200', function () {
+        it('should return status code 200', function() {
             expect(statusCode).to.equal(200);
         });
 
-        it('should return content-type application/json', function () {
+        it('should return content-type application/json', function() {
             expect(contentType).to.equal('application/json');
         });
 
-        it('should return payload with overall status faulting', function () {
+        it('should return payload with overall status faulting', function() {
             expect(diff(payload, {
                 status: 'faulting',
                 test: true,

@@ -4,18 +4,18 @@ var async = require('async'),
     hoek  = require('hoek'),
     joi   = require('joi');
 
-var all = function (collection, predicate) {
-    for (var i = 0; i < collection.length; i++) {
-        if (predicate(collection[i]) === false) {
+var all = function(collection, predicate) {
+    for(var i = 0; i < collection.length; i++) {
+        if(predicate(collection[i]) === false) {
             return false;
         }
     }
     return true;
 };
 
-exports.register = function (plugin, options, next) {
+exports.register = function(plugin, options, next) {
     var validation = joi.validate(options, require('./schema'));
-    if (validation.error) {
+    if(validation.error) {
         return next(validation.error);
     }
 
@@ -23,21 +23,21 @@ exports.register = function (plugin, options, next) {
         {
             method: 'GET',
             path: '/service-status',
-            handler: function (req, reply) {
+            handler: function(req, reply) {
                 var monitors = [];
-                options.monitors.forEach(function (monitor) {
-                    monitors.push(function (done) {
+                options.monitors.forEach(function(monitor) {
+                    monitors.push(function(done) {
                         monitor(req, reply, done);
                     });
                 });
 
-                async.parallel(monitors, function (err, results) {
-                    if (err) {
+                async.parallel(monitors, function(err, results) {
+                    if(err) {
                         throw err;
                     }
 
                     var response = {
-                        status: all(results, function (result) { return result.status === 'healthy'; }) ? 'ok' : 'faulting'
+                        status: all(results, function(result) { return result.status === 'healthy'; }) ? 'ok' : 'faulting'
                     };
                     response = hoek.applyToDefaults(response, options.metadata || {});
                     response.monitors = results;

@@ -1,10 +1,10 @@
 'use strict';
 
 var async = require('async'),
-    Hoek  = require('hoek'),
+    hoek  = require('hoek'),
     joi   = require('joi');
 
-var all = function(collection, predicate) {
+var all = function (collection, predicate) {
     for (var i = 0; i < collection.length; i++) {
         if (predicate(collection[i]) === false) {
             return false;
@@ -15,7 +15,7 @@ var all = function(collection, predicate) {
 
 exports.register = function (plugin, options, next) {
     var validation = joi.validate(options, require('./schema'));
-    if(validation.error) {
+    if (validation.error) {
         return next(validation.error);
     }
 
@@ -25,17 +25,21 @@ exports.register = function (plugin, options, next) {
             path: '/service-status',
             handler: function (req, reply) {
                 var monitors = [];
-                options.monitors.forEach(function(monitor) {
-                    monitors.push(function(done) {
+                options.monitors.forEach(function (monitor) {
+                    monitors.push(function (done) {
                         monitor(req, reply, done);
                     });
                 });
 
                 async.parallel(monitors, function (err, results) {
+                    if (err) {
+                        throw err;
+                    }
+
                     var response = {
                         status: all(results, function (result) { return result.status === 'healthy'; }) ? 'ok' : 'faulting'
                     };
-                    response = Hoek.applyToDefaults(response, options.metadata || {});
+                    response = hoek.applyToDefaults(response, options.metadata || {});
                     response.monitors = results;
 
                     reply(response)

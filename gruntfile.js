@@ -3,18 +3,17 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        jshint: {
+        eslint: {
             options: {
-                jshintrc: '.jshintrc',
-                reporter: require('jshint-stylish')
+                configFile: '.eslintrc'
             },
-            all: ['*.js', 'src/**/*.js', 'test/**/*.js']
+            target: [ './*.js', './src', './test' ]
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-eslint');
     require('time-grunt')(grunt);
 
     grunt.registerTask('default', ['build']);
-    grunt.registerTask('build', ['jshint:all']);
+    grunt.registerTask('build', ['eslint']);
 };

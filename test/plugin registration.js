@@ -3,12 +3,12 @@
 var expect = require('expect.js'),
     plugin = require('../index.js');
 
-describe('plugin registration', function() {
+describe('plugin registration', function () {
     var registeredRoutes;
 
-    before(function(done) {
+    before(function (done) {
         var server = {
-            route: function(routes) {
+            route: function (routes) {
                 registeredRoutes = routes;
             }
         };

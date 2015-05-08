@@ -17,27 +17,29 @@ server.connection({ port: 3000 });
 server.register([
     {
         register: require('ot-hapi-service-status'),
-        metadata: {
-            version: require('./package.json').version,
-            env: process.env.NODE_ENV || 'local'
-        },
-        monitors: [
-            function(req, reply, done) {
-                done(null, {
-                    status: 'healthy', // status of 'healty' indicates monitor is healthy, any other value indicates monitor failure and will cause the top-level status to change to 'faulting'
-                    name: 'monitor 1', // optional name, useful for differentiating between monitors
-                    myField1: true,    // arbitraty fields, usefull for surfacing
-                    myField2: false    // additional diagnostic information
-                });
+        options: {
+            metadata: {
+                version: require('./package.json').version,
+                env: process.env.NODE_ENV || 'local'
             },
-            function(req, reply, done) {
-                done(null, {
-                    status: 'cannot connect to internal service',
-                    name: 'monitor 2',
-                    err: {}
-                });
-            }
-        ]
+            monitors: [
+                function(req, reply, done) {
+                    done(null, {
+                        status: 'healthy', // status of 'healty' indicates monitor is healthy, any other value indicates monitor failure and will cause the top-level status to change to 'faulting'
+                        name: 'monitor 1', // optional name, useful for differentiating between monitors
+                        myField1: true,    // arbitraty fields, usefull for surfacing
+                        myField2: false    // additional diagnostic information
+                    });
+                },
+                function(req, reply, done) {
+                    done(null, {
+                        status: 'cannot connect to internal service',
+                        name: 'monitor 2',
+                        err: {}
+                    });
+                }
+            ]        
+        }
     }
 ], function(err) {
     if (err) {

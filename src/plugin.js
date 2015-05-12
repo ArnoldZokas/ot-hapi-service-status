@@ -50,7 +50,13 @@ exports.register = function(plugin, options, next) {
             config: {
                 auth: false,
                 description: 'service-status',
-                tags: ['non-cacheable']
+                tags: ['non-cacheable'],
+                plugins: {
+                    'ot-hapi-request-metrics': {
+                        endpoint: 'service-status',
+                        version: '1'
+                    }
+                }
             }
         }
     ]);

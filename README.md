@@ -58,6 +58,8 @@ server.register([
 - **metadata** - (optional) a set of additional fields to inject into each service-status response
 
 ## Release History
+- **v0.1.4** (2015-05-12)
+    - improved compatibility with ot-hapi-request-metrics package
 - **v0.1.3** (2015-05-12)
     - updated dependencies
 - **v0.1.2** (2015-05-06)

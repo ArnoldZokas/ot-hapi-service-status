@@ -11,6 +11,7 @@
     "no-multiple-empty-lines": 1,
     "no-nested-ternary": 1,
     "no-underscore-dangle": 0,
+    "no-unused-vars": 1,
     "quotes": [1, "single"],
     "quote-props": [1, "as-needed"],
     "space-after-function-name": [1, "never"],

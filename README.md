@@ -58,6 +58,8 @@ server.register([
 - **metadata** - (optional) a set of additional fields to inject into each service-status response
 
 ## Release History
+- **v1.0.2** (2015-07-13)
+    - updated dependencies
 - **v1.0.1** (2015-06-06)
     - housekeeping
 - **v1.0.0** (2015-05-13)

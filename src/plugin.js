@@ -39,12 +39,11 @@ exports.register = function(plugin, options, next) {
                     var response = {
                         status: all(results, function(result) { return result.status === 'healthy'; }) ? 'ok' : 'faulting'
                     };
+                    
                     response = hoek.applyToDefaults(response, options.metadata || {});
                     response.monitors = results;
 
-                    reply(response)
-                        .type('application/json')
-                        .code(200);
+                    reply(response).type('application/json').code(200);
                 });
             },
             config: {

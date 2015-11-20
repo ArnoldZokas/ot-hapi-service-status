@@ -82,6 +82,8 @@ server.register([
     - **done** - callback, with the following signature `function(err, data)`
 
 ## Release History
+- **v1.0.3** (2015-11-20)
+    - updated dependencies
 - **v1.0.2** (2015-07-13)
     - updated dependencies
 - **v1.0.1** (2015-06-06)

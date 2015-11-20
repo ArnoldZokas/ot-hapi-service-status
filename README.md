@@ -23,7 +23,7 @@ cache-control: no-cache
   monitors: [
     {
       status: "healthy",
-      name: "get-partner endpoint"
+      name: "your custom monitor"
     }
   ]
 }

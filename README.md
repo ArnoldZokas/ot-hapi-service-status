@@ -5,6 +5,30 @@
 
 [![NPM](https://nodei.co/npm/ot-hapi-service-status.png?downloads=true&stars=true)](https://nodei.co/npm/ot-hapi-service-status)
 
+## Overview
+Defines `/service-status` endpoint:
+```
+GET /service-status
+Host: yourhost.com
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8
+cache-control: no-cache
+
+{
+  status: "ok",
+  version: "1.0.164",
+  sha: "2c199e4e45ed09a84356412243e676998986b0e1",
+  env: "prod",
+  monitors: [
+    {
+      status: "healthy",
+      name: "get-partner endpoint"
+    }
+  ]
+}
+```
+
 ## Usage
 ```
 $ npm i ot-hapi-service-status --save
@@ -51,11 +75,11 @@ server.register([
 ```
 
 ## Configuration
+- **metadata** - (optional) a set of additional fields to inject into each service-status response
 - **monitors** - a list of monitoring functions, with the following signature `function(req, reply, done)`
     - **req** - Hapi request object
     - **reply** - Hapi reply object
     - **done** - callback, with the following signature `function(err, data)`
-- **metadata** - (optional) a set of additional fields to inject into each service-status response
 
 ## Release History
 - **v1.0.2** (2015-07-13)
